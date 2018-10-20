@@ -10,11 +10,14 @@ import com.pahansith.jtheard.thread.impl.GetUserThreadListenerImpl;
 
 public class UserService implements AbstractService{
 
+    public Long serviceId = 1L;
+
     public UserService() {
         ServiceMediator.getInstance().registerService(this);
     }
 
     public void getUserAsynchronously(int userId){
+        System.out.println("Web Call Started Asynchronously");
         /*Creates Listener Object for the newly creating thread*/
         ThreadListener listener = new GetUserThreadListenerImpl();
 
@@ -23,13 +26,13 @@ public class UserService implements AbstractService{
     }
 
     public User getUser(int i) {
-
+        System.out.println("Web Call Started Synchronously");
         /*
         * Call web API on main thread and get User
         * Sleep thread indicates the delay of webapi call
         * */
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -57,5 +60,18 @@ public class UserService implements AbstractService{
         } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UserService) {
+            UserService userService = (UserService) obj;
+
+            if (this.serviceId.equals(userService.serviceId)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

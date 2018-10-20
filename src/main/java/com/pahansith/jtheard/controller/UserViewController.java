@@ -6,6 +6,7 @@ import com.pahansith.jtheard.view.UserView;
 
 public class UserViewController implements AbstractController{
     private UserView view;
+    public Long controllerId = 1L;
 
     public UserViewController() {
     }
@@ -39,6 +40,14 @@ public class UserViewController implements AbstractController{
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj instanceof UserViewController) {
+            UserViewController userViewController = (UserViewController) obj;
+
+            if (this.controllerId.equals(userViewController.controllerId)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -1,9 +1,7 @@
 package com.pahansith.jtheard.view;
 
-import com.pahansith.jtheard.controller.ControllerMediator;
 import com.pahansith.jtheard.controller.UserViewController;
 import com.pahansith.jtheard.model.User;
-import com.pahansith.jtheard.service.UserService;
 
 public class UserView {
 
@@ -12,14 +10,20 @@ public class UserView {
         anotherFunction();
         getUserAsync();
         anotherFunction();
+        System.out.println("End Main Thread");
     }
 
+    /**
+     * This methods indicates a UI process that should run
+     * simultaneously with the same UI process without any blocking
+     */
     private void anotherFunction() {
-        for (int i = 0; i < 100; i++) {
+        System.out.println("Another UI Function Run");
+        for (int i = 0; i < 5; i++) {
             //You can see the main thread still running
             System.out.println(i);
             try {
-                Thread.sleep(10);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
