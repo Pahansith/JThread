@@ -3,8 +3,18 @@ package com.pahansith.jtheard.thread;
 import com.pahansith.jtheard.exception.UserNotFoundException;
 import com.pahansith.jtheard.model.User;
 
+/**
+ * Use to define user preferred threads for web-api access tasks
+ */
 public class ThreadManager {
-    public void getUserDataOnSeparateThread(int userId, ThreadListener listener){
+    /**
+     * Defined for get a user object from external web service
+     *
+     * @param userId   is id of user to be retrieved
+     * @param listener implementation of the custom listener for callbacks
+     */
+    public void getUserDataOnSeparateThread(int userId,
+                                            ThreadListener listener) {
         new Thread(() -> {
             User user = null;
             try {
@@ -23,14 +33,21 @@ public class ThreadManager {
                 }
             }catch (Exception e){
                 /*
-                * Catches exceptions thrown in Web API*/
+                 * Catches exceptions thrown in Web API*/
                 listener.onThreadReturnsError(e);
             }
             listener.onThreadComplete(user);
         }).start();
     }
 
-    public void getAccountDataOnSeparateThread(int accountId, ThreadListener listener){
-
+    /**
+     * Defined for get account object from external web service
+     *
+     * @param accountId is id of account to be retrieved
+     * @param listener  implementation of the custom listener for callbacks
+     */
+    @SuppressWarnings("Not Implemented Yet")
+    public void getAccountDataOnSeparateThread(int accountId, ThreadListener listener) {
+        throw new UnsupportedOperationException("Not Implemented Yet");
     }
 }

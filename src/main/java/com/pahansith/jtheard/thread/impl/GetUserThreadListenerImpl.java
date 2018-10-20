@@ -5,6 +5,10 @@ import com.pahansith.jtheard.service.ServiceMediator;
 import com.pahansith.jtheard.service.UserService;
 import com.pahansith.jtheard.thread.ThreadListener;
 
+/**
+ * Custom Implementation of the ThreadListener interface
+ * specified for register callbacks for get users on separate thread function
+ */
 public class GetUserThreadListenerImpl implements ThreadListener {
 
     @Override
